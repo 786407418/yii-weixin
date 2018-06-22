@@ -38,11 +38,11 @@ class Wx extends Component {
      */
     public function get_wx_info($code)
     {
-        $this->get_access_token($code)->reset_request()->get_user_info();
-        if(array_key_exists('errcode',$request_res)){
-            throw new \Exception($request_res['errmsg']);
+        $response_res = $this->get_access_token($code)->reset_request()->get_user_info();
+        if(array_key_exists('errcode',$response_res)){
+            throw new \Exception($response_res['errmsg']);
         }
-        return $this;
+        return $response_res;
     }
 
     /**
